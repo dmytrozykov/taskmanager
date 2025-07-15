@@ -1,0 +1,18 @@
+included:
+  - TaskManager
+  - TaskManagerTests
+  - TaskManagerUITests
+
+check_for_updates: true
+
+trailing_whitespace:
+  ignores_empty_lines: true
+
+custom_rules:
+  no_todo:
+    name: "No TODOs"
+    regex: "TODO:"
+    message: "Please resolve TODOs before committing."
+    severity: warning
+
+reporter: "xcode"
