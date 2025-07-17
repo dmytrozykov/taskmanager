@@ -9,6 +9,13 @@ struct TaskListView: View {
             List {
                 ForEach(store.tasks) { task in
                     Text(task.title)
+                        .swipeActions(edge: .trailing) {
+                            Button(role: .destructive) {
+                                store.send(.deleteButtonTapped(id: task.id))
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
                 }
             }
             .navigationTitle("Tasks")
@@ -23,12 +30,13 @@ struct TaskListView: View {
             }
         }
         .sheet(
-            item: $store.scope(state: \.addTask, action: \.addTask),
+            item: $store.scope(state: \.destination?.addTask, action: \.destination.addTask),
         ) { addTaskStore in
             NavigationStack {
                 AddTaskView(store: addTaskStore)
             }
         }
+        .alert($store.scope(state: \.destination?.alert, action: \.destination.alert))
     }
 }
 
