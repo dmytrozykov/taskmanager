@@ -5,19 +5,34 @@ import Foundation
 struct TaskListFeature {
     @ObservableState
     struct State: Equatable {
+        @Presents var addTask: AddTaskFeature.State?
         var tasks: IdentifiedArrayOf<TaskEntry> = []
     }
 
     enum Action {
         case addButtonTapped
+        case addTask(PresentationAction<AddTaskFeature.Action>)
     }
 
     var body: some ReducerOf<Self> {
-        Reduce { _, action in
+        Reduce { state, action in
             switch action {
             case .addButtonTapped:
-                .none
+                state.addTask = AddTaskFeature.State(
+                    task: TaskEntry(id: UUID(), title: "", isCompleted: false),
+                )
+                return .none
+
+            case let .addTask(.presented(.delegate(.saveTask(task)))):
+                state.tasks.append(task)
+                return .none
+
+            case .addTask:
+                return .none
             }
+        }
+        .ifLet(\.$addTask, action: \.addTask) {
+            AddTaskFeature()
         }
     }
 }

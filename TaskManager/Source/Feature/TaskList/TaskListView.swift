@@ -2,7 +2,7 @@ import ComposableArchitecture
 import SwiftUI
 
 struct TaskListView: View {
-    let store: StoreOf<TaskListFeature>
+    @Bindable var store: StoreOf<TaskListFeature>
 
     var body: some View {
         NavigationStack {
@@ -20,6 +20,13 @@ struct TaskListView: View {
                         Image(systemName: "plus")
                     }
                 }
+            }
+        }
+        .sheet(
+            item: $store.scope(state: \.addTask, action: \.addTask),
+        ) { addTaskStore in
+            NavigationStack {
+                AddTaskView(store: addTaskStore)
             }
         }
     }
