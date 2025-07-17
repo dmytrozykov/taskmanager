@@ -8,14 +8,16 @@ struct TaskListView: View {
         NavigationStack {
             List {
                 ForEach(store.tasks) { task in
-                    Text(task.title)
-                        .swipeActions(edge: .trailing) {
-                            Button(role: .destructive) {
-                                store.send(.deleteButtonTapped(id: task.id))
-                            } label: {
-                                Label("Delete", systemImage: "trash")
-                            }
+                    TaskRowView(task: task) {
+                        store.send(.toggleTaskCompletion(id: task.id))
+                    }
+                    .swipeActions(edge: .trailing) {
+                        Button(role: .destructive) {
+                            store.send(.deleteButtonTapped(id: task.id))
+                        } label: {
+                            Label("Delete", systemImage: "trash")
                         }
+                    }
                 }
             }
             .navigationTitle("Tasks")

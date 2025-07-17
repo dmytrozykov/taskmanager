@@ -14,9 +14,5 @@ struct AppFeature {
         Scope(state: \.taskList, action: \.taskList) {
             TaskListFeature()
         }
-
-        Reduce { _, _ in
-            .none
-        }
     }
 }

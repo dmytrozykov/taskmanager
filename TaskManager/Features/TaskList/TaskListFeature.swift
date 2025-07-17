@@ -13,6 +13,7 @@ struct TaskListFeature {
         case addButtonTapped
         case destination(PresentationAction<Destination.Action>)
         case deleteButtonTapped(id: TaskEntry.ID)
+        case toggleTaskCompletion(id: TaskEntry.ID)
     }
 
     var body: some ReducerOf<Self> {
@@ -50,6 +51,10 @@ struct TaskListFeature {
                         }
                     },
                 )
+                return .none
+
+            case let .toggleTaskCompletion(id: id):
+                state.tasks[id: id]?.isCompleted.toggle()
                 return .none
             }
         }
