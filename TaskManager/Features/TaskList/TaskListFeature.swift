@@ -16,13 +16,15 @@ struct TaskListFeature {
         case toggleTaskCompletion(id: TaskEntry.ID)
     }
 
+    @Dependency(\.uuid) var uuid
+
     var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .addButtonTapped:
                 state.destination = .addTask(
                     AddTaskFeature.State(
-                        task: TaskEntry(id: UUID(), title: "", isCompleted: false),
+                        task: TaskEntry(id: uuid(), title: "", isCompleted: false),
                     ),
                 )
                 return .none
@@ -42,15 +44,7 @@ struct TaskListFeature {
                 guard let title = state.tasks[id: id]?.title else {
                     return .none
                 }
-                state.destination = .alert(
-                    AlertState {
-                        TextState("Delete '\(title)'?")
-                    } actions: {
-                        ButtonState(role: .destructive, action: .confirmDeletion(id: id)) {
-                            TextState("Delete")
-                        }
-                    },
-                )
+                state.destination = .alert(.deleteConfirmation(id: id, title: title))
                 return .none
 
             case let .toggleTaskCompletion(id: id):
@@ -65,6 +59,7 @@ struct TaskListFeature {
 }
 
 extension TaskListFeature.Action {
+    @CasePathable
     enum Alert: Equatable {
         case confirmDeletion(id: TaskEntry.ID)
     }
@@ -79,3 +74,15 @@ extension TaskListFeature {
 }
 
 extension TaskListFeature.Destination.State: Equatable {}
+
+extension AlertState where Action == TaskListFeature.Action.Alert {
+    static func deleteConfirmation(id: TaskEntry.ID, title: String) -> Self {
+        Self {
+            TextState("Delete '\(title)'?")
+        } actions: {
+            ButtonState(role: .destructive, action: .confirmDeletion(id: id)) {
+                TextState("Delete")
+            }
+        }
+    }
+}

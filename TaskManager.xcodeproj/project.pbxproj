@@ -25,6 +25,23 @@
 		CE795CB32E26660400AE6066 /* TaskManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CE13F9EC2E296C0300161A05 /* Exceptions for "Tests" folder in "TaskManager" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TaskManagerTests/Features/TaskListFeatureTests.swift,
+			);
+			target = CE795CA52E26660300AE6066 /* TaskManager */;
+		};
+		CE13F9EE2E296C0700161A05 /* Exceptions for "Tests" folder in "TaskManagerTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TaskManagerTests/Features/TaskListFeatureTests.swift,
+			);
+			target = CE795CB22E26660400AE6066 /* TaskManagerTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CE795CA82E26660300AE6066 /* TaskManager */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -33,6 +50,10 @@
 		};
 		CED4AB132E29538800BC746C /* Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CE13F9EC2E296C0300161A05 /* Exceptions for "Tests" folder in "TaskManager" target */,
+				CE13F9EE2E296C0700161A05 /* Exceptions for "Tests" folder in "TaskManagerTests" target */,
+			);
 			path = Tests;
 			sourceTree = "<group>";
 		};

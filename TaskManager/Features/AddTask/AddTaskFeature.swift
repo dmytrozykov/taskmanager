@@ -41,6 +41,7 @@ struct AddTaskFeature {
 }
 
 extension AddTaskFeature.Action {
+    @CasePathable
     enum Delegate: Equatable {
         case saveTask(TaskEntry)
     }
