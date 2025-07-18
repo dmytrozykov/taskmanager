@@ -12,10 +12,11 @@ struct TaskListView: View {
                         store.send(.toggleTaskCompletion(id: task.id))
                     }
                     .swipeActions(edge: .trailing) {
-                        Button(role: .destructive) {
+                        Button {
                             store.send(.deleteButtonTapped(id: task.id))
                         } label: {
                             Label("Delete", systemImage: "trash")
+                                .tint(.red)
                         }
                     }
                 }
