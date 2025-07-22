@@ -11,11 +11,14 @@ struct AddTaskView: View {
                 store.send(.saveButtonTapped)
             }
         }
-        .toolbar {
-            ToolbarItem {
-                Button("Cancel") {
-                    store.send(.cancelButtonTapped)
-                }
+        .toolbar { toolbarContent }
+    }
+
+    @ToolbarContentBuilder
+    private var toolbarContent: some ToolbarContent {
+        ToolbarItem {
+            Button("Cancel") {
+                store.send(.cancelButtonTapped)
             }
         }
     }

@@ -6,31 +6,9 @@ struct TaskListView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(store.tasks) { task in
-                    TaskRowView(task: task) {
-                        store.send(.toggleTaskCompletion(id: task.id))
-                    }
-                    .swipeActions(edge: .trailing) {
-                        Button {
-                            store.send(.deleteButtonTapped(id: task.id))
-                        } label: {
-                            Label("Delete", systemImage: "trash")
-                                .tint(.red)
-                        }
-                    }
-                }
-            }
-            .navigationTitle("Tasks")
-            .toolbar {
-                ToolbarItem {
-                    Button {
-                        store.send(.addButtonTapped)
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                }
-            }
+            taskList
+                .navigationTitle("Tasks")
+                .toolbar { toolbarContent }
         }
         .sheet(
             item: $store.scope(state: \.destination?.addTask, action: \.destination.addTask),
@@ -40,6 +18,35 @@ struct TaskListView: View {
             }
         }
         .alert($store.scope(state: \.destination?.alert, action: \.destination.alert))
+    }
+
+    @ToolbarContentBuilder
+    private var toolbarContent: some ToolbarContent {
+        ToolbarItem {
+            Button {
+                store.send(.addButtonTapped)
+            } label: {
+                Image(systemName: "plus")
+            }
+        }
+    }
+
+    private var taskList: some View {
+        List {
+            ForEach(store.tasks) { task in
+                TaskRowView(task: task) {
+                    store.send(.toggleTaskCompletion(id: task.id))
+                }
+                .swipeActions(edge: .trailing) {
+                    Button {
+                        store.send(.deleteButtonTapped(id: task.id))
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                            .tint(.red)
+                    }
+                }
+            }
+        }
     }
 }
 
