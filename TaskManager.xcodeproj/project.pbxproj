@@ -25,15 +25,36 @@
 		CE795CB32E26660400AE6066 /* TaskManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CE13F9EC2E296C0300161A05 /* Exceptions for "Tests" folder in "TaskManager" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TaskManagerTests/Features/TaskListFeatureTests.swift,
+			);
+			target = CE795CA52E26660300AE6066 /* TaskManager */;
+		};
+		CE13F9EE2E296C0700161A05 /* Exceptions for "Tests" folder in "TaskManagerTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				TaskManagerTests/Features/TaskListFeatureTests.swift,
+			);
+			target = CE795CB22E26660400AE6066 /* TaskManagerTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CE795CA82E26660300AE6066 /* TaskManager */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = TaskManager;
 			sourceTree = "<group>";
 		};
-		CE795CB62E26660400AE6066 /* TaskManagerTests */ = {
+		CED4AB132E29538800BC746C /* Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = TaskManagerTests;
+			exceptions = (
+				CE13F9EC2E296C0300161A05 /* Exceptions for "Tests" folder in "TaskManager" target */,
+				CE13F9EE2E296C0700161A05 /* Exceptions for "Tests" folder in "TaskManagerTests" target */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -60,8 +81,8 @@
 		CE795C9D2E26660300AE6066 = {
 			isa = PBXGroup;
 			children = (
+				CED4AB132E29538800BC746C /* Tests */,
 				CE795CA82E26660300AE6066 /* TaskManager */,
-				CE795CB62E26660400AE6066 /* TaskManagerTests */,
 				CEFA10752E269B040057A9BE /* Frameworks */,
 				CE795CA72E26660300AE6066 /* Products */,
 			);
@@ -102,6 +123,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				CE795CA82E26660300AE6066 /* TaskManager */,
+				CED4AB132E29538800BC746C /* Tests */,
 			);
 			name = TaskManager;
 			packageProductDependencies = (
@@ -123,9 +145,6 @@
 			);
 			dependencies = (
 				CE795CB52E26660400AE6066 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				CE795CB62E26660400AE6066 /* TaskManagerTests */,
 			);
 			name = TaskManagerTests;
 			packageProductDependencies = (
@@ -377,6 +396,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_CFBundleDisplayName = "Task Manager";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -409,6 +429,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_CFBundleDisplayName = "Task Manager";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
